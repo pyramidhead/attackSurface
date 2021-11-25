@@ -9,7 +9,7 @@ nsl=$(nslookup -type=any $domain)
 nsl4=$(nsl | egrep -o '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])' | awk -v RS="[ \n]+" '!n[$0]++')
 # nsl6=$(nsl | egrep -o 'regex and awk go here') still working on this
 # roll the output of both back into finalized nsl
-nsl="$nsl4$nsl6"
+nsl="$nsl4 $nsl6"
 echo 'nsl output = '
 echo $nsl
 
