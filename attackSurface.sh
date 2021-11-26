@@ -7,14 +7,16 @@ domain=$1;
 # extract exposed hosts from nslookup query
 nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
 # extract nameservers from nslookup query and resolve
-nsld=$(nslookup -type=any $domain) | grep 'nameserver' | cut -c 26- | sed -r 's/\.$//'
+nsldr=$(nslookup -type=any $domain) | grep 'nameserver' | cut -c 26- | sed -r 's/\.$//'
+nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
+nsl=$($nslh $nsld)
 echo 'nsl output = ';
 echo $nsl;
 
 # extract from host query
-hlu=$(host $domain) | egrep -o '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])' | awk -v RS="[ \n]+" '!n[$0]++');
-echo 'hlu output = ';
-echo $hlu;
+hluv4=$(host $domain) | grep "has address" | cut -c 25-
+hluv6=$(host $domain) | grep "has IPv6" | cut -c 30-
+hlumr=$(host $domain) | grep "mail"
 
 # extract IPs from dig query
 dlu=$(dig $domain any) | egrep -o '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))' | awk -v RS="[ \n]+" '!n[$0]++';
