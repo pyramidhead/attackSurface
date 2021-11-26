@@ -4,13 +4,10 @@
 # accept domain variable
 domain=$1;
 
-# extract from nslookup query
+# extract exposed hosts from nslookup query
 nsl=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
-# | egrep -o '(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])';
-# nsl4=$(nsl | egrep -o '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])' | awk -v RS="[ \n]+" '!n[$0]++');
-# nsl6=$(nsl | egrep -o 'regex and awk go here') still working on this
-# roll the output of both back into finalized nsl
-nsl="$nsl4 $nsl6"
+# extract nameservers from nslookup query and resolve
+nsl=$(nslookup -type=any $domain) | grep 'nameserver' | cut -c 10-
 echo 'nsl output = ';
 echo $nsl;
 
