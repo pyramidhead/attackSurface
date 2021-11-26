@@ -5,7 +5,7 @@
 domain=$1;
 
 # extract from nslookup query
-nsl=$(nslookup -type=any $domain) 
+nsl=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0"
 # | egrep -o '(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])';
 # nsl4=$(nsl | egrep -o '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])' | awk -v RS="[ \n]+" '!n[$0]++');
 # nsl6=$(nsl | egrep -o 'regex and awk go here') still working on this
