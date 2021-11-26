@@ -10,13 +10,17 @@ nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -
 nsldr=$(nslookup -type=any $domain) | grep 'nameserver' | cut -c 26- | sed -r 's/\.$//'
 nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
 nsl=$($nslh $nsld)
-echo 'nsl output = ';
-echo $nsl;
+echo 'nsl output ='
+echo $nsl
 
 # extract from host query
 hluv4=$(host $domain) | grep "has address" | cut -c 25-
 hluv6=$(host $domain) | grep "has IPv6" | cut -c 30-
-hlumr=$(host $domain) | grep "mail"
+hlumr=$(host $domain) | grep "mail" | sed 's|.* ||' | sed -r 's/\.$//'
+hlum=$(nslookup -type=any $hlumr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
+hlu=$($hluv4 $hluv6 $hlum)
+echo 'hlu output ='
+echo $hlu
 
 # extract IPs from dig query
 dlu=$(dig $domain any) | egrep -o '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))' | awk -v RS="[ \n]+" '!n[$0]++';
