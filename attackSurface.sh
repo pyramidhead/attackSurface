@@ -21,7 +21,7 @@ echo $hlu
 # extract IPs from dig query
 dlu=$(dig $domain any) | egrep -o '(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])' | awk -v RS="[ \n]+" '!n[$0]++'
 # extract hostnames from dig query, resolve with nslookup
-# dho=$(dig $domain any | egrep -o '(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])' | awk to parse for hostnames goes here | resolving hostnames to ips goes here) still working on this
+dho=$(dig $domain any | egrep -o '(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])' # | awk to parse for hostnames goes here | resolving hostnames to ips goes here) still working on this
 # append output of dho to dlu
 dhu="$dlu $dho"
 echo 'dlu output = '
