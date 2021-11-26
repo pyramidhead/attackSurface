@@ -5,9 +5,9 @@
 domain=$1;
 
 # extract exposed hosts from nslookup query
-nsl=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
+nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
 # extract nameservers from nslookup query and resolve
-nsl=$(nslookup -type=any $domain) | grep 'nameserver' | cut -c 10-
+nsld=$(nslookup -type=any $domain) | grep 'nameserver' | cut -c 26- | sed -r 's/\.$//'
 echo 'nsl output = ';
 echo $nsl;
 
