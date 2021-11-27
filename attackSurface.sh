@@ -9,7 +9,7 @@ nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -
 # extract nameservers from nslookup query and resolve
 nsldr=$(nslookup -type=any $domain) | grep 'nameserver' | cut -c 26- | sed -r 's/\.$//'
 nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
-nsl=$($nslh $nsld)
+nsl=echo "$($nslh $nsld)"
 echo 'nsl output ='
 echo $nsl
 
