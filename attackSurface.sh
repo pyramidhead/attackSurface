@@ -17,14 +17,13 @@ echo $nsl
 hluv4=$(host $domain) | grep "has address" | cut -c 25-
 hluv6=$(host $domain) | grep "has IPv6" | cut -c 30-
 hlumr=$(host $domain) | grep "mail" | sed 's|.* ||' | sed -r 's/\.$//'
-hlum=$(nslookup -type=any $hlumr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
-hlu=$($hluv4 $hluv6 $hlum)
+hlu=$($hluv4 $hluv6 $hlumr)
 echo 'hlu output ='
 echo $hlu
 
 # combine into master variable
 surface="${nsl} ${hlu}";
-# deduplicate rows as we're using a few discovery methods
+# deduplicate rows as we're using two discovery methods
 
 echo 'final output = ';
 echo $surface;
