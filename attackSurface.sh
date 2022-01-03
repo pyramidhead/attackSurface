@@ -17,6 +17,12 @@ echo $nsl
 hluv4=$(host $domain) | grep "has address" | cut -c 25-
 hluv6=$(host $domain) | grep "has IPv6" | cut -c 30-
 hlumr=$(host $domain) | grep "mail" | sed 's|.* ||' | sed -r 's/\.$//'
+echo 'hluv4 output ='
+echo $hluv4
+echo 'hluv6 output ='
+echo $hluv6
+echo 'hlumr output ='
+echo $hlumr
 hlu=$($hluv4 $hluv6 $hlumr)
 echo 'hlu output ='
 echo $hlu
