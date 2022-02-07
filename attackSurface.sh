@@ -7,6 +7,9 @@ domain=$1;
 # save whois queries for humint
 whodat1=$(whois -h whois.arin.net "o $domain")
 whodat2=$(whois $domain)
+echo 'whois output='
+echo $whodat1
+echo whodat2
 
 # extract exposed hosts from nslookup query
 nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
@@ -16,6 +19,13 @@ nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c
 nsl=echo "$($nslh $nsld)"
 echo 'nsl output ='
 echo $nsl
+
+# dig around for zone transfers
+for i in $ nsldr; do
+  digout=$($digout dig $i $domain axfr)
+done
+echo 'dig output ='
+echo $digout
 
 # extract from host query
 hluv4=$(host $domain) | grep "has address" | cut -c 25-
@@ -36,8 +46,8 @@ humint-"${whodat1} ${whodat2}"
 ipsurface="${nsl} ${hlu}";
 # deduplicate rows as we're using multiple discovery methods
 
-echo 'human intelligence = ';
+echo 'human intelligence =';
 echo $humint
 
-echo 'final output = ';
+echo 'final output =';
 echo $ipsurface;
