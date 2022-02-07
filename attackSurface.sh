@@ -4,6 +4,9 @@
 # accept domain variable
 domain=$1;
 
+# save whois query for humint
+whodat=$(whois $domain)
+
 # extract exposed hosts from nslookup query
 nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
 # extract nameservers from nslookup query and resolve
@@ -27,9 +30,13 @@ hlu=$($hluv4 $hluv6 $hlumr)
 echo 'hlu output ='
 echo $hlu
 
-# combine into master variable
-surface="${nsl} ${hlu}";
-# deduplicate rows as we're using two discovery methods
+# combine into master variables
+humint-"${whodat}"
+ipsurface="${nsl} ${hlu}";
+# deduplicate rows as we're using multiple discovery methods
+
+echo 'human intelligence = ';
+echo $humint
 
 echo 'final output = ';
-echo $surface;
+echo $ipsurface;
