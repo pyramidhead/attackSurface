@@ -9,7 +9,7 @@ whodat1=$(whois -h whois.arin.net "o $domain")
 whodat2=$(whois $domain)
 echo 'whois output='
 echo $whodat1
-echo whodat2
+echo $whodat2
 
 # extract exposed hosts from nslookup query
 nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
@@ -49,5 +49,5 @@ ipsurface="${nsl} ${hlu}";
 echo 'human intelligence =';
 echo $humint
 
-echo 'final output =';
+echo 'ip surface =';
 echo $ipsurface;
