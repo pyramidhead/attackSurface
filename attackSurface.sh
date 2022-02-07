@@ -4,8 +4,9 @@
 # accept domain variable
 domain=$1;
 
-# save whois query for humint
-whodat=$(whois $domain)
+# save whois queries for humint
+whodat1=$(whois -h whois.arin.net "o $domain")
+whodat2=$(whois $domain)
 
 # extract exposed hosts from nslookup query
 nslh=$(nslookup -type=any $domain) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
@@ -31,7 +32,7 @@ echo 'hlu output ='
 echo $hlu
 
 # combine into master variables
-humint-"${whodat}"
+humint-"${whodat1} ${whodat2}"
 ipsurface="${nsl} ${hlu}";
 # deduplicate rows as we're using multiple discovery methods
 
