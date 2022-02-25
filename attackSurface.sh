@@ -5,8 +5,8 @@
 domain=$1;
 
 # save whois queries for humint
-whodat1=$(whois -h whois.arin.net "o $domain" | grep '\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b')
-whodat2=$(whois $domain | grep '\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b')
+whodat1=$(whois -h whois.arin.net "o $domain")
+whodat2=$(whois $domain)
 echo 'whois output='
 echo $whodat1
 echo $whodat2
