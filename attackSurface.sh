@@ -17,8 +17,9 @@ nslookup -type=any $domain | grep Server | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.
 # extract address subnet
 nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
 # extract nameservers from nslookup query and resolve
-nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/nameServer.txt
-sed -r 's/\.$//' nameServer.txt
+nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/rawName.txt
+sed -r 's/\.$//' rawName.txt > stripName.txt
+# work on extracting naked hostname next
 nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
 nsl=echo "$($nsls $nsla $nslh $nsld)"
 echo 'nsl output ='
