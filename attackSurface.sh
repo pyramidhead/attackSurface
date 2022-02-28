@@ -21,6 +21,10 @@ cat rawName.txt | sed -r 's/\.$//' | awk '{print $4}' rawName.txt > ~/git/attack
 sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedName.txt
 echo 'output of strippedName='
 cat ~/git/attackSurface/strippedName.txt
+for h in $( cat ~/git/attackSurface/strippedName.txt ); do
+    a=$(dig +short $h | head -n1)
+    echo -e "$h\t${a:-Did_Not_Resolve}"
+done
 echo 'surface as of nslookup='
 cat ~/git/attackSurface/surface.txt
 # have nameservers stripped down to fqdn, resolve them next
@@ -32,6 +36,10 @@ cat ~/git/attackSurface/surface.txt
 # dig around for zone transfers
 # for i in $ nsldr; do
 #  digout=$($digout dig $i $domain axfr)
+# done
+# for h in $( cat ~/git/attackSurface/strippedName.txt ); do
+#    a=$(dig +short $h | head -n1)
+#    echo -e "$h\t${a:-Did_Not_Resolve}"
 # done
 # echo 'dig output ='
 # echo $digout
