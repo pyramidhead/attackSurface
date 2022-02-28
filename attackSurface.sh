@@ -5,7 +5,7 @@
 domain=$1;
 
 # save whois queries for humint
-whodat1=$(whois -h whois.arin.net "o $domain")
+whodat1=$(whois -H whois.arin.net "o $domain")
 whodat2=$(whois $domain)
 
 # extract exposed hosts from nslookup query
