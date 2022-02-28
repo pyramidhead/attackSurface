@@ -18,7 +18,7 @@ nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/rawName.tx
 cat rawName.txt | sed -r 's/\.$//' | awk '{print $4}' rawName.txt > ~/git/attackSurface/stripName.txt
 sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedName.txt
 echo 'output of strippedName='
-cat !/git/attackSurface/strippedName.txt
+cat ~/git/attackSurface/strippedName.txt
 echo 'surface as of nslookup='
 cat ~/git/attackSurface/surface.txt
 # have nameservers stripped down to fqdn, resolve them next
