@@ -5,8 +5,8 @@
 domain=$1;
 
 # add more nameservers
-/bin/sh -c 'echo "nameserver 8.8.8.8" >> /etc/resolv.conf'
-/bin/sh -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
+sudo /bin/sh -c 'echo "nameserver 8.8.8.8" >> /etc/resolv.conf'
+sudo /bin/sh -c 'echo "nameserver 1.1.1.1" >> /etc/resolv.conf'
 
 # save whois queries for humint
 whodat1=$(whois -H whois.arin.net "o $domain")
