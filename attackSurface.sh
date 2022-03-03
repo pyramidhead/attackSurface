@@ -19,6 +19,7 @@ nslookup -type=any $domain | grep Server | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.
 nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
 echo 'surface so far='
 cat ~/git/attackSurface/surface.txt
+# this contains a lot of ips, strip those first
 # extract nameservers from nslookup query and resolve
 nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/rawName.txt
 cat rawName.txt | sed -r 's/\.$//' | awk '{print $4}' rawName.txt > ~/git/attackSurface/stripName.txt
@@ -26,12 +27,10 @@ sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedNam
 rm -f ~/git/attackSurface/stripName.txt
 echo 'output of strippedName='
 cat ~/git/attackSurface/strippedName.txt
-# this contains a lot of ips, strip those first
-
-for h in $( cat ~/git/attackSurface/strippedName.txt ); do
-    a=$(dig +short $h | head -n1)
-    echo -e "$h\t${a:-Did_Not_Resolve}"
-done
+# for h in $( cat ~/git/attackSurface/strippedName.txt ); do
+#    a=$(dig +short $h | head -n1)
+#    echo -e "$h\t${a:-Did_Not_Resolve}"
+#done
 echo 'surface as of nslookup='
 cat ~/git/attackSurface/surface.txt
 # have nameservers stripped down to fqdn, resolve them next
