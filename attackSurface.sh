@@ -19,8 +19,11 @@ cat ~/git/attackSurface/surface.txt
 nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/rawName.txt
 cat rawName.txt | sed -r 's/\.$//' | awk '{print $4}' rawName.txt > ~/git/attackSurface/stripName.txt
 sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedName.txt
+rm -f ~/git/attackSurface/stripName.txt
 echo 'output of strippedName='
 cat ~/git/attackSurface/strippedName.txt
+# this contains a lot of ips, strip those first
+
 for h in $( cat ~/git/attackSurface/strippedName.txt ); do
     a=$(dig +short $h | head -n1)
     echo -e "$h\t${a:-Did_Not_Resolve}"
