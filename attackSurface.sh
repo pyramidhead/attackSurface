@@ -36,6 +36,9 @@ cat ~/git/attackSurface/strippedName.txt
 # done
 echo 'surface as of nslookup='
 cat ~/git/attackSurface/surface.txt
+while read ~/git/attackSurface/strippedName.txt; do
+  # do stuff
+done <peptides.txt
 # have nameservers stripped down to fqdn, resolve them next
 # nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
 # nsl=echo "$($nsls $nsla $nslh $nsld)"
