@@ -29,8 +29,7 @@ sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedNam
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
 echo 'output of strippedName='
-strippedNames="~/git/attackSurface/strippedName.txt"
-targetset1=$(cat $strippedNames)
+targetset1=$(cat /home/ec2-user/git/attackSurface/strippedName.txt)
 for LINE in $targetset1
 do
   echo "$LINE"
@@ -39,11 +38,11 @@ done
 #    a=$(dig +short $h | head -n1)
 #    echo -e "$h\t${a:-Did_Not_Resolve}"
 # done
-echo 'surface as of nslookup='
-cat ~/git/attackSurface/surface.txt
-while read ~/git/attackSurface/strippedName.txt; do
+# echo 'surface as of nslookup='
+# cat ~/git/attackSurface/surface.txt
+# while read ~/git/attackSurface/strippedName.txt; do
   # do stuff
-done <peptides.txt
+# done <peptides.txt
 # have nameservers stripped down to fqdn, resolve them next
 # nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
 # nsl=echo "$($nsls $nsla $nslh $nsld)"
