@@ -29,12 +29,12 @@ sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedNam
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
 echo 'output of strippedName='
-targetset1=$(cat /home/ec2-user/git/attackSurface/strippedName.txt)
-echo $targetset1
-for LINE in $targetset1
-do
-  echo "$LINE"
-done
+# targetset1=$(cat /home/ec2-user/git/attackSurface/strippedName.txt)
+# echo $targetset1
+# for LINE in $targetset1
+# do
+#  echo "$LINE"
+# done
 # for h in $( cat ~/git/attackSurface/strippedName.txt ); do
 #    a=$(dig +short $h | head -n1)
 #    echo -e "$h\t${a:-Did_Not_Resolve}"
@@ -80,8 +80,8 @@ humint-"${whodat1} ${whodat2}"
 # ipsurface="${nsl} ${hlu}";
 # deduplicate rows as we're using multiple discovery methods
 
-echo 'human intelligence =';
-echo $humint
+# echo 'human intelligence =';
+# echo $humint
 
 # echo 'ip surface =';
 # echo $ipsurface;
