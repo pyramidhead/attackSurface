@@ -29,7 +29,12 @@ sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedNam
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
 echo 'output of strippedName='
-cat ~/git/attackSurface/strippedName.txt
+strippedNames="~/git/attackSurface/strippedName.txt"
+targetset1=$(cat $strippedNames)
+for LINE in $targetset1
+do
+  echo "$LINE"
+done
 # for h in $( cat ~/git/attackSurface/strippedName.txt ); do
 #    a=$(dig +short $h | head -n1)
 #    echo -e "$h\t${a:-Did_Not_Resolve}"
