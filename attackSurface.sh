@@ -30,7 +30,7 @@ sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedNam
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
 echo 'output of strippedName='
-# targetset1=$(cat /home/ec2-user/git/attackSurface/strippedName.txt)
+targetset1=$(cat /home/ec2-user/git/attackSurface/strippedName.txt)
 # echo $targetset1
 # for LINE in $targetset1
 # do
