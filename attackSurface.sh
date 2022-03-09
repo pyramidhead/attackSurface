@@ -10,6 +10,7 @@ search us-east-2.compute.internal
 options timeout:2 attempts:5
 nameserver 172.31.0.2
 nameserver 8.8.8.8
+nameserver 8.8.4.4
 nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 
 # save whois queries for humint
