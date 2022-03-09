@@ -26,12 +26,11 @@ cat ~/git/attackSurface/surface.txt
 # extract nameservers from nslookup query and resolve
 nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/rawName.txt
 cat rawName.txt | sed -r 's/\.$//' | awk '{print $4}' rawName.txt > ~/git/attackSurface/stripName.txt
-sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/strippedName.txt
+sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/nudeName.txt
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
-echo 'output of strippedName='
-targetset1=$(cat /home/ec2-user/git/attackSurface/strippedName.txt)
-# echo $targetset1
+echo 'output of nudeName='
+cat /home/ec2-user/git/attackSurface/nudeName.txt
 # for LINE in $targetset1
 # do
 #  echo "$LINE"
