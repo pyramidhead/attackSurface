@@ -29,6 +29,7 @@ cat rawName.txt | sed -r 's/\.$//' | awk '{print $4}' rawName.txt > ~/git/attack
 sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/nudeName.txt
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
+chmod 755 nudeName.txt
 echo 'output of nudeName='
 cat /home/ec2-user/git/attackSurface/nudeName.txt
 for host in $(/home/ec2-user/git/attackSurface/nudeName.txt); do
