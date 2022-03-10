@@ -80,7 +80,7 @@ done
 # echo $hlu
 
 # combine into master variables
-humint-"${whodat1} ${whodat2}"
+# humint="${whodat1} ${whodat2}"
 # ipsurface="${nsl} ${hlu}";
 # deduplicate rows as we're using multiple discovery methods
 
