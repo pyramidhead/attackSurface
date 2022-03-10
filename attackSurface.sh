@@ -31,6 +31,9 @@ rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
 echo 'output of nudeName='
 cat /home/ec2-user/git/attackSurface/nudeName.txt
+for host in $(/home/ec2-user/git/attackSurface/nudeName.txt); do
+  nslookup $host
+done
 # for LINE in $targetset1
 # do
 #  echo "$LINE"
