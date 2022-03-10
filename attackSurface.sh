@@ -32,9 +32,10 @@ rm -f ~/git/attackSurface/stripName.txt
 chmod 755 nudeName.txt
 echo 'output of nudeName='
 cat /home/ec2-user/git/attackSurface/nudeName.txt
-for host in $(/home/ec2-user/git/attackSurface/nudeName.txt); do
-  nslookup $host
-done
+while read -r line; do COMMAND; done < /home/ec2-user/git/attackSurface/nudeName.txt
+# for host in $(/home/ec2-user/git/attackSurface/nudeName.txt); do
+#  nslookup $host
+# done
 # for LINE in $targetset1
 # do
 #  echo "$LINE"
