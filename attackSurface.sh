@@ -21,7 +21,7 @@ whodat2=$(whois $domain)
 nslookup -type=any $domain | grep Server | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' > ~/git/attackSurface/surface.txt
 # extract address subnet
 nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
-echo 'surface so far='
+echo 'surface after nslookup='
 cat ~/git/attackSurface/surface.txt
 # extract nameservers from nslookup query and resolve
 nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/rawName.txt
@@ -30,11 +30,11 @@ sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/nudeName.tx
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
 chmod 755 nudeName.txt
-echo 'output of nudeName='
-cat /home/ec2-user/git/attackSurface/nudeName.txt
+# echo 'output of nudeName='
+# cat /home/ec2-user/git/attackSurface/nudeName.txt
 while read -r line; do nslookup; done < /home/ec2-user/git/attackSurface/nudeName.txt | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> /home/ec2-user/git/attackSurface/surface.txt
 rm -f nudeName.txt
-echo 'surface so far='
+echo 'adding more nameservers='
 cat ~/git/attackSurface/surface.txt
 # for host in $(/home/ec2-user/git/attackSurface/nudeName.txt); do
 #  nslookup $host
