@@ -36,11 +36,6 @@ while read -r line; do nslookup; done < /home/ec2-user/git/attackSurface/nudeNam
 rm -f nudeName.txt
 echo 'adding more nameservers='
 cat ~/git/attackSurface/surface.txt
-# have nameservers stripped down to fqdn, resolve them next
-# nsld=$(nslookup -type=any $nsldr) | grep '^Address*'* | grep -v "127.0" | cut -c 10-
-# nsl=echo "$($nsls $nsla $nslh $nsld)"
-# echo 'nsl output ='
-# echo $nsl
 
 # dig around for zone transfers
 # for i in $ nsldr; do
