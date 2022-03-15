@@ -39,7 +39,7 @@ cat ~/git/attackSurface/surface.txt
 dig $domain ANY +nostat +nocmd +nocomments > ~/git/attackSurface/digOut.txt
 echo 'dig output='
 cat ~/git/attackSurface/digOut.txt
-while read -r line; do grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' digOut.txt >> /home/ec2-user/git/attackSurface/surface.txt done;
+grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' digOut.txt >> /home/ec2-user/git/attackSurface/surface.txt
 echo 'dig output added='
 cat ~/git/attackSurface/surface.txt
 # resolve hostnames and extract (remember to throw away $domain)
