@@ -39,14 +39,10 @@ cat ~/git/attackSurface/surface.txt
 dig $domain ANY +nostat +nocmd +nocomments > ~/git/attackSurface/digOut.txt
 echo 'dig output='
 cat ~/git/attackSurface/digOut.txt
-while read -r line; do
-# this is incomplete
-# extract naked IPs
-  grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' digOut.txt >> /home/ec2-user/git/attackSurface/surface.txt
-done;
-# resolve hostnames and extract (remember to throw away $domain)
+while read -r line; do grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' digOut.txt >> /home/ec2-user/git/attackSurface/surface.txt done;
 echo 'dig output added='
 cat /home/ec2-user/git/attackSurface/surface.txt
+# resolve hostnames and extract (remember to throw away $domain)
 # for h in $( cat ~/git/attackSurface/strippedName.txt ); do
 #    a=$(dig +short $h | head -n1)
 #    echo -e "$h\t${a:-Did_Not_Resolve}"
