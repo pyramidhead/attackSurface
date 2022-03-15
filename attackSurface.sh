@@ -30,17 +30,15 @@ sed 's/.$//' ~/git/attackSurface/stripName.txt > ~/git/attackSurface/nudeName.tx
 rm -f ~/git/attackSurface/rawName.txt
 rm -f ~/git/attackSurface/stripName.txt
 chmod 755 nudeName.txt
-# echo 'output of nudeName='
-# cat /home/ec2-user/git/attackSurface/nudeName.txt
 while read -r line; do nslookup; done < /home/ec2-user/git/attackSurface/nudeName.txt | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> /home/ec2-user/git/attackSurface/surface.txt
 rm -f nudeName.txt
 echo 'adding more nameservers='
 cat ~/git/attackSurface/surface.txt
 
 # dig around for zone transfers
-# for i in $ nsldr; do
-#  digout=$($digout dig $i $domain axfr)
-# done
+dig $domain ANY +nostat +nocmd +nocomments > ~/git/attackSurface/digOut.txt
+echo 'dig output='
+cat ~/git/attackSurface/digOut.txt
 # for h in $( cat ~/git/attackSurface/strippedName.txt ); do
 #    a=$(dig +short $h | head -n1)
 #    echo -e "$h\t${a:-Did_Not_Resolve}"
