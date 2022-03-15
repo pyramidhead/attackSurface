@@ -43,8 +43,8 @@ while read -r line; do
 # this is incomplete
 # extract naked IPs
   grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' digOut.txt >> /home/ec2-user/git/attackSurface/surface.txt
+done;
 # resolve hostnames and extract (remember to throw away $domain)
-; done;
 echo 'dig output added='
 cat /home/ec2-user/git/attackSurface/surface.txt
 # for h in $( cat ~/git/attackSurface/strippedName.txt ); do
