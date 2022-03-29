@@ -16,14 +16,14 @@ nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 # save whois queries for humint
 whodat1=$(whois -H whois.arin.net "o $domain")
 whodat2=$(whois $domain)
-echo $whodat1
-echo $whodat2
 
 # extract server IP
 nslookup -type=any $domain | grep Server | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' > ~/git/attackSurface/surface.txt
+echo 'surface after server ip='
+cat ~/git/attackSurface/surface.txt
 # extract address subnet
 nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
-echo 'surface after nslookup='
+echo 'surface after subnet check='
 cat ~/git/attackSurface/surface.txt
 # extract nameservers from nslookup query and resolve
 nslookup -type=any $domain | grep 'nameserver' >> ~/git/attackSurface/rawName.txt
@@ -35,6 +35,7 @@ chmod 755 nudeName.txt
 while read -r line; do nslookup; done < /home/ec2-user/git/attackSurface/nudeName.txt | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> /home/ec2-user/git/attackSurface/surface.txt
 rm -f nudeName.txt
 echo 'adding more nameservers='
+echo 'surface after nslookup='
 cat ~/git/attackSurface/surface.txt
 
 # dig around for zone transfers
