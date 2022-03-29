@@ -12,6 +12,7 @@ nameserver 172.31.0.2
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
+sudo cat /etc/resolv.conf
 
 # save whois queries for humint
 whodat1=$(whois -H whois.arin.net "o $domain")
