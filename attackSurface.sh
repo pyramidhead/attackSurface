@@ -15,7 +15,7 @@ nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 
 # save whois queries for humint
 whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
-whois $domain >> ~/git/attackSurface.humint.txt
+whois $domain >> ~/git/attackSurface/humint.txt
 
 # extract server IP
 nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' > ~/git/attackSurface/surface.txt
