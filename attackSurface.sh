@@ -14,8 +14,8 @@ nameserver 8.8.4.4
 nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 
 # save whois queries for humint
-whodat1=$(whois -H whois.arin.net "o $domain")
-whodat2=$(whois $domain)
+whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
+whois $domain >> ~/git/attackSurface.humint.txt
 
 # extract server IP
 nslookup -type=any $domain | grep Server | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' > ~/git/attackSurface/surface.txt
