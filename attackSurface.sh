@@ -17,8 +17,12 @@ nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
 whois $domain >> ~/git/attackSurface/humint.txt
 
+# parse humint.txt for IPs
+
+# parse humint.txt for hostnames and lookup IPs
+
 # extract server IP
-nsl1=nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
+nsl1="nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
 echo $nsl1
 # extract address subnet
 # nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
