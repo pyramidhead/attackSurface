@@ -18,9 +18,8 @@ whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
 whois $domain >> ~/git/attackSurface/humint.txt
 
 # extract server IP
-nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' #> ~/git/attackSurface/surface.txt
-echo 'surface after server ip='
-cat ~/git/attackSurface/surface.txt
+nsl1=nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'
+echo $nsl1
 # extract address subnet
 # nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
 # echo 'surface after subnet check='
