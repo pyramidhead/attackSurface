@@ -18,6 +18,7 @@ whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
 whois $domain >> ~/git/attackSurface/humint.txt
 
 # parse humint.txt for IPs
+grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt
 
 # parse humint.txt for hostnames and lookup IPs
 
