@@ -21,6 +21,7 @@ whois $domain >> ~/git/attackSurface/humint.txt
 grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt
 
 # parse humint.txt for hostnames and lookup IPs
+grep 'Server' humint.txt
 
 # extract server IP
 nsl1="nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
