@@ -18,10 +18,10 @@ whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
 whois $domain >> ~/git/attackSurface/humint.txt
 
 # parse humint.txt for IPs
-grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt
+grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt > ~/git/attackSurface/surface.txt
 
 # parse humint.txt for hostnames and lookup IPs
-grep 'Server' humint.txt
+grep 'Server' humint.txt > ~/git/attackSurface/humHostsRaw.txt
 
 # extract server IP
 nsl1="nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
