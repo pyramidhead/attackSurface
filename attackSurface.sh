@@ -19,7 +19,7 @@ whois $domain >> ~/git/attackSurface/humint.txt
 
 # parse humint.txt for IPs and hostnames
 grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt > ~/git/attackSurface/surface.txt
-grep -o '([a-z0-9\-._~%]+' humint.txt
+grep 'Server' humint.txt | grep -o '^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$'
 
 # parse humint.txt for hostnames and lookup IPs
 grep 'Server' humint.txt > ~/git/attackSurface/humHostsRaw.txt
