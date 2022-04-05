@@ -17,8 +17,9 @@ nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
 whois $domain >> ~/git/attackSurface/humint.txt
 
-# parse humint.txt for IPs
+# parse humint.txt for IPs and hostnames
 grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt > ~/git/attackSurface/surface.txt
+grep '([a-z0-9\-._~%]+' humint.txt
 
 # parse humint.txt for hostnames and lookup IPs
 grep 'Server' humint.txt > ~/git/attackSurface/humHostsRaw.txt
