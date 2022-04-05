@@ -22,6 +22,7 @@ grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt > ~/git
 
 # parse humint.txt for hostnames and lookup IPs
 grep 'Server' humint.txt > ~/git/attackSurface/humHostsRaw.txt
+cat ~/git/attackSurface/humHostsRaw.txt | sed -r 's/\.$//' #| awk '{print $4}' rawName.txt > ~/git/attackSurface/stripName.txt
 
 # extract server IP
 nsl1="nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
