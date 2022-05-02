@@ -26,7 +26,7 @@ cat ~/git/attackSurface/humHostsRaw.txt | sed -r 's/\.$//' | awk '{print $4}' ~/
 perl -n -e '/HOST *= *([^ )]+)/ && print "$1\n"' ~/git/attackSurface/humHostsRaw.txt
 
 # extract server IP
-nsl1="nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}'"
+nsl1=$(nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
 echo $nsl1
 # extract address subnet
 # nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
