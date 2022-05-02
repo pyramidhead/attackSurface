@@ -13,10 +13,6 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 
-# save whois queries for humint
-whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
-whois $domain >> ~/git/attackSurface/humint.txt
-
 # parse humint.txt for IPs
 surface=$(grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt)
 echo $surface
