@@ -13,15 +13,20 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 nameserver 1.1.1.1' | sudo dd of=/etc/resolv.conf
 
+# save whois queries for humint
+whois -H whois.arin.net "o $domain" > ~/git/attackSurface/humint.txt
+whois $domain >> ~/git/attackSurface/humint.txt
+
 # parse humint.txt for IPs
 surface=$(grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' humint.txt)
 echo $surface
 
 # parse humint.txt for hostnames and lookup IPs
 humIntRaw=$(grep 'Server' humint.txt)
-# echo $humIntRaw
-sed 's/.*Server: \(.*\)/\1/' $humIntRaw > ~/git/attackSurface/stripName.txt
+echo $humIntRaw
+sed 's/.*Server: \(.*\)/\1/' ~/git/attackSurface/humHostsRaw.txt > ~/git/attackSurface/stripName.txt
 cat ~/git/attackSurface/stripName.txt
+perl -n -e '/HOST *= *([^ )]+)/ && print "$1\n"' ~/git/attackSurface/humHostsRaw.txt
 
 # extract server IP
 nsl1=$(nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
