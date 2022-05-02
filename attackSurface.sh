@@ -23,7 +23,8 @@ echo $surface
 
 # parse humint.txt for hostnames and lookup IPs
 grep 'Server' humint.txt > ~/git/attackSurface/humHostsRaw.txt
-cat ~/git/attackSurface/humHostsRaw.txt | sed 's/.*Server: \(.*\)/\1/' ~/git/attackSurface/humHostsRaw.txt > ~/git/attackSurface/stripName.txt
+cat ~/git/attackSurface/humHostsRaw.txt
+sed 's/.*Server: \(.*\)/\1/' ~/git/attackSurface/humHostsRaw.txt > ~/git/attackSurface/stripName.txt
 perl -n -e '/HOST *= *([^ )]+)/ && print "$1\n"' ~/git/attackSurface/humHostsRaw.txt
 
 # extract server IP
