@@ -24,7 +24,7 @@ echo $surface
 grep 'Server' humint.txt | sed 's/.*Server: \(.*\)/\1/' > ~/git/attackSurface/stripName.txt
 
 # extract server IP
-nslookup -type=any $domain recurse | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' > ~/git/attackSurface/nslIpOut.txt
+nslookup -type=any $domain -recurse | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' > ~/git/attackSurface/nslIpOut.txt
 # extract address subnet
 # nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
 # echo 'surface after subnet check='
