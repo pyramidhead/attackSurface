@@ -23,11 +23,9 @@ echo $surface
 
 # parse humint.txt for hostnames and lookup IPs
 grep 'Server' humint.txt | sed 's/.*Server: \(.*\)/\1/' > ~/git/attackSurface/stripName.txt
-# perl -n -e '/HOST *= *([^ )]+)/ && print "$1\n"' ~/git/attackSurface/humHostsRaw.txt
 
 # extract server IP
-nsl1=$(nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
-echo $nsl1
+nslookup -type=any $domain | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' > ~/git/attackSurface/nslIpOut.txt
 # extract address subnet
 # nslookup -type=any $domain | grep Address | grep -o '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' >> ~/git/attackSurface/surface.txt
 # echo 'surface after subnet check='
